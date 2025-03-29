@@ -47,7 +47,8 @@ const weatherData = {
 		cloudCover: current.variables(5)!.value(),
 		apparentTemperature: current.variables(6)!.value(),
 		relativeHumidity2m: current.variables(7)!.value(),
-    weatherCode: getWeatherDescription(current.variables(8)!.value()),
+    weatherCode: current.variables(8)!.value(),
+    weatherDescription: getWeatherDescription(current.variables(8)!.value()),
 	},
 };
 

@@ -89,9 +89,8 @@ const params = {
 const url = "https://api.open-meteo.com/v1/forecast";
 const responses = await (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$openmeteo$2f$lib$2f$index$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["fetchWeatherApi"])(url, params);
 // Helper function to form time ranges
-const range = (start, stop, step)=>Array.from({
-        length: (stop - start) / step
-    }, (_, i)=>start + i * step);
+// const range = (start: number, stop: number, step: number) =>
+// 	Array.from({ length: (stop - start) / step }, (_, i) => start + i * step);
 // Process first location. Add a for-loop for multiple locations or weather models
 const response = responses[0];
 // Attributes for timezone and location
@@ -113,7 +112,8 @@ const weatherData = {
         cloudCover: current.variables(5).value(),
         apparentTemperature: current.variables(6).value(),
         relativeHumidity2m: current.variables(7).value(),
-        weatherCode: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$weatherCode$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"])(current.variables(8).value())
+        weatherCode: current.variables(8).value(),
+        weatherDescription: (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$weatherCode$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"])(current.variables(8).value())
     }
 };
 const __TURBOPACK__default__export__ = weatherData;
@@ -138,59 +138,100 @@ var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
 function Home() {
     console.log(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$weatherData$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"]);
     return __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$weatherData$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].current ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]",
+        className: "grid items-center justify-items-center min-h-screen p-8  gap-16 font-[family-name:var(--font-geist-sans)]",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
-                className: "flex flex-col gap-[32px] row-start-2 items-center sm:items-start",
+                className: "bg-zinc-800  rounded-2xl backdrop-blur-3xl p-8 flex flex-col gap-[32px] row-start-2 items-center sm:items-start",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
                         className: "text-amber-400 text-6xl",
-                        children: "Tokyo"
+                        children: "Tokyo "
                     }, void 0, false, {
-                        fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 8,
-                        columnNumber: 9
-                    }, this),
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-9xl",
-                        children: [
-                            Math.round(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$weatherData$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].current.temperature2m),
-                            "°",
-                            " ",
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                className: "text-4xl text-gray-400",
-                                children: [
-                                    "Feels like ",
-                                    Math.round(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$weatherData$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].current.apparentTemperature),
-                                    "°"
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/src/app/page.tsx",
-                                lineNumber: 12,
-                                columnNumber: 11
-                            }, this)
-                        ]
-                    }, void 0, true, {
                         fileName: "[project]/src/app/page.tsx",
                         lineNumber: 9,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-amber-100",
-                        children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$weatherData$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].current.weatherCode
-                    }, void 0, false, {
+                        className: "flex",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                className: "text-sm",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-8xl",
+                                        children: [
+                                            Math.round(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$weatherData$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].current.temperature2m),
+                                            "°"
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/app/page.tsx",
+                                        lineNumber: 12,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
+                                        fileName: "[project]/src/app/page.tsx",
+                                        lineNumber: 12,
+                                        columnNumber: 99
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-xl text-amber-100",
+                                        children: __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$weatherData$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].current.weatherDescription
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/page.tsx",
+                                        lineNumber: 13,
+                                        columnNumber: 13
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("br", {}, void 0, false, {
+                                        fileName: "[project]/src/app/page.tsx",
+                                        lineNumber: 13,
+                                        columnNumber: 101
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-gray-400",
+                                        children: [
+                                            "Feels like ",
+                                            Math.round(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$app$2f$lib$2f$weatherData$2e$ts__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"].current.apparentTemperature),
+                                            "°"
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/app/page.tsx",
+                                        lineNumber: 14,
+                                        columnNumber: 13
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/page.tsx",
+                                lineNumber: 11,
+                                columnNumber: 11
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("img", {
+                                style: {
+                                    height: '110px'
+                                },
+                                className: "ml-6",
+                                src: `/temp.svg`,
+                                alt: "Partly Cloudy Icon",
+                                width: "110",
+                                height: "110"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/page.tsx",
+                                lineNumber: 17,
+                                columnNumber: 11
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/src/app/page.tsx",
-                        lineNumber: 16,
+                        lineNumber: 10,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 7,
+                lineNumber: 8,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("footer", {
-                className: "row-start-3 flex gap-[24px] flex-wrap items-center justify-center",
+                className: "text-xs row-start-3 flex gap-[24px] flex-wrap items-center justify-center",
                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                     children: [
                         "© 2025 Blah Blah | ",
@@ -200,24 +241,24 @@ function Home() {
                             children: "Weather data by Open-Meteo.com"
                         }, void 0, false, {
                             fileName: "[project]/src/app/page.tsx",
-                            lineNumber: 19,
+                            lineNumber: 23,
                             columnNumber: 36
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/page.tsx",
-                    lineNumber: 19,
+                    lineNumber: 23,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/page.tsx",
-                lineNumber: 18,
+                lineNumber: 22,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/src/app/page.tsx",
-        lineNumber: 6,
+        lineNumber: 7,
         columnNumber: 5
     }, this) : null;
 }
