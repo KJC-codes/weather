@@ -969,16 +969,6 @@ const N5_KANJI: Kanji = [
     }
   },
   {
-    "kanji": "休",
-    "meaning": ["rest"],
-    "concept": ["action"],
-    "strokes": 6,
-    "readings": {
-      "kunyomi": ["やすむ"],
-      "onyomi": ["キュウ"]
-    }
-  },
-  {
     "kanji": "立",
     "meaning": ["stand"],
     "concept": ["action"],
@@ -1006,6 +996,16 @@ const N5_KANJI: Kanji = [
     "readings": {
       "kunyomi": ["あたらしい"],
       "onyomi": ["シン"]
+    }
+  },
+  {
+    "kanji": "来",
+    "meaning": ["come"],
+    "concept": ["arrival"],
+    "strokes": 7,
+    "readings": {
+      "kunyomi": ["くる", "きたる"],
+      "onyomi": ["ライ"]
     }
   },
   {
